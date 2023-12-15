@@ -8,10 +8,6 @@ export default function New() {
             <li className="">Les candidats</li>
             <li className="">Se connecter</li>
         </header>
-
-        <div className="">
-            
-        </div>
     </main>
   )
 }
