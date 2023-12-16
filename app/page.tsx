@@ -4,11 +4,11 @@ export default function Home() {
   return (
     <main className="min-h-full">
         <div className="">
-          <div className="container mx-auto mt-20 md:mt-10 px-8">
+          <div className="container mx-auto mt-20 md:mt-10">
           
             <div className="grid md:grid-cols-12">
               {/* -- MAIN HERO LEFT PART -- */}
-              <div className="md:col-span-7 md:col-start-1 md:row-start-1">
+              <div className="md:col-span-7">
                 <div className="h-full flex flex-col justify-center gap-4">
                   {/* HERO TEXT CONTENT */}
                   <h1 className="">
@@ -25,7 +25,7 @@ export default function Home() {
                 </div>
               </div>
               {/* -- MAIN HERO RIGHT PART */}
-              <div className="md:col-span-4 col-start-1 row-start-1">
+              <div className="md:col-span-4 max-md:row-start-1">
                 <img className="w-full max-w-xs md:max-w-md" src="images/Sitting-hero.png" alt="" />
               </div>
             </div>
