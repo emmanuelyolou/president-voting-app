@@ -19,12 +19,12 @@ export default function RootLayout({
     <html lang="fr">
       <body className={inter.className}>
         <header className='flex justify-between container mx-auto py-4'>
-              <li className="font-bold">Election IDSI</li>
+              <li className="font-bold"><Link href="/">Election IDSI</Link></li>
 
               <ul className="flex gap-4">
                   <li className=""><Link href="/" className="">Accueil</Link></li>
                   <li className=""><Link href="#" className="">Les candidats</Link></li>
-                  <li className=""><Link href="#" className="">Se connecter</Link></li>
+                  <li className=""><Link href="/login" className="">Se connecter</Link></li>
               </ul>
           </header>
         {children}

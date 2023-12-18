@@ -1,3 +1,5 @@
+const {nextui} = require("@nextui-org/theme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,10 +9,18 @@ module.exports = {
  
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+
+    // single component styles
+  "./node_modules/@nextui-org/theme/dist/components/button.js", 
+  // or you can use a glob pattern (multiple component styles)
+  './node_modules/@nextui-org/theme/dist/components/(modal|button).js'
+,
+
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 }
 

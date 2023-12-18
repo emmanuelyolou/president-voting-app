@@ -1,4 +1,4 @@
-
+@import 'breakpoints';
 h1, 
 h2, 
 h3, 
@@ -22,7 +22,20 @@ h6 {
 }
 
 
-h1 { @apply text-6xl }
+h1 { 
+    @apply text-4xl;
+    
+    @include md {
+        @apply text-6xl;
+    }
+    // @include lg {
+    //     @apply text-6xl
+    // }
+}
 h2 { @apply text-4xl }
 h3 { @apply text-2xl }
 h4 { @apply text-xl }
+
+input {
+    @apply block w-full rounded-md border border-slate-200 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400;
+}
