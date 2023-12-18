@@ -7,7 +7,7 @@ export default function Vote
 () {
   return (
     <main>
-      <VoteConfirmationModal />
+      <VoteConfirmationModal name={12}/>
       <section className="container mx-auto px-4">
         <h1 className="mt-14">Choisissez votre Président</h1>
         <p className="text-slate-600 text-xl mt-5">
@@ -16,7 +16,7 @@ export default function Vote
 
         
         {/* CANDIDATE VOTE CARD */}
-        <div className="grid grid-cols-2 md:grid-cols-4 mt-14 gap-4 gap-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-14 gap-4 gap-y-8">
           {['man', 'woman', 'max', 'aiony'].map((item, index) => (
             <div key={index}>
               <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden">

@@ -1,3 +1,5 @@
+'use client'
+
 import {NextUIProvider} from "@nextui-org/system";
 
 import Link from "next/link";
