@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import VoteConfirmationModal from './components/VoteConfirmationModal'
 import { Button } from '@nextui-org/button'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 
