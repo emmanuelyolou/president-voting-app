@@ -54,7 +54,7 @@ export default function Vote
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
         placement={"center"}
-
+        isDismissable={false}
         motionProps={{
           variants: {
             enter: {
