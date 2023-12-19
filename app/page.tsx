@@ -11,9 +11,9 @@ import * as React from "react";
 export default function Home() {
   return (
     <NextUIProvider>
-      <main className="min-h-full">
+      <main className="min-h-full flex items-center justify-center">
           <div className="">
-            <div className="container mx-auto mt-20 md:mt-10">
+            <div className="container mx-auto">
       
               <div className="grid md:grid-cols-12 gap-y-8">
                 {/* -- MAIN HERO LEFT PART -- */}
