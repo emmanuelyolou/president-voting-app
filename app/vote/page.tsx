@@ -33,7 +33,7 @@ export default function Vote
 
         
         {/* CANDIDATE VOTE CARD */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-14 gap-4 gap-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14 gap-4 gap-y-8">
           {['man', 'woman', 'max', 'aiony'].map((item, index) => (
             <div key={index}>
               <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden">

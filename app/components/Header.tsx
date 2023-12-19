@@ -11,7 +11,7 @@ export default function Header() {
     const menuItems = {
         "Accueil": '/',
         "Candidats": '#',
-        "Comité d'organisation": '#',
+        "Statistiques": '/stats',
     };
 
   
