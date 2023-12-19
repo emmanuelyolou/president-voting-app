@@ -26,5 +26,5 @@ export default async (req) => {
 };
 
 export const config = {
-  matcher: ["/login", "/vote"],
+  matcher: ["/login"],
 };

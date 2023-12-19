@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem} from "@nextui-org/navbar";
 import { Button } from '@nextui-org/button';
+import { usePathname } from 'next/navigation'
 
 
 export default function Header() {
@@ -13,7 +14,8 @@ export default function Header() {
         "Candidats": '#',
         "Statistiques": '/stats',
     };
-
+    const pathname = usePathname()
+    console.log(pathname)
   
   return (
     <header className=''>
@@ -42,17 +44,19 @@ export default function Header() {
         </NavbarContent>
 
         <NavbarContent className='max-sm:hidden'>
-            <NavbarItem>
-                <Link color="foreground" href="#">
-                    Candidats
-                </Link>
+                <NavbarItem isActive={pathname == 'candidates'}>
+                    <Link color="foreground" href="#">
+                        Candidats
+                    </Link>
                 </NavbarItem>
-                <NavbarItem>
+
+                <NavbarItem isActive={pathname == 'organization'}>
                 <Link href="#" aria-current="page">
                     Comité d&apos;Organisation
                 </Link>
                 </NavbarItem>
-                <NavbarItem>
+
+                <NavbarItem isActive={pathname == '/stats'}>
                 <Link color="foreground" href="/stats">
                     Statistiques
                 </Link>
