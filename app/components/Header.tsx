@@ -52,7 +52,7 @@ export default function Header() {
 
                 <NavbarItem isActive={pathname == 'organization'}>
                 <Link href="#" aria-current="page">
-                    Comité d&apos;Organisation
+                    Comité
                 </Link>
                 </NavbarItem>
 

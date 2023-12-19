@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Button } from '@nextui-org/button'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
+import { FaCheck } from "react-icons/fa6";
 
 
 export default function Vote
