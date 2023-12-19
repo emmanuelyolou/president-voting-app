@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "@/api/axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/navigation";
+import CurrentUserContext from "../hooks/CurrentUser";
 
 export default function Login() {
   const [bodyData, setBodyData] = useState({
@@ -10,6 +11,7 @@ export default function Login() {
     password: "",
   });
   const router = useRouter();
+  const { actualiser, setActualiser } = useContext(CurrentUserContext);
 
   const [formErrors, setFormErrors] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -46,6 +48,8 @@ export default function Login() {
         .post("/auth/login", bodyData)
         .then(({ data }) => {
           cookie.set("token", data.token);
+          cookie.set("userId", data.userId);
+          setActualiser(actualiser);
           router.push("/vote");
         })
         .catch((err) => console.log(err));
