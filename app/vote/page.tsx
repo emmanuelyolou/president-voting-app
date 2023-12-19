@@ -11,6 +11,16 @@ export default function Vote
 
   let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false)
 
+  const candidates = [ 
+    {firstName: 'LEVI', lastName: 'N\'GBESSO', id: 1, imgName: 'man'},
+    {firstName: 'Jean-Bosco', lastName: 'YAO', id: 2, imgName: 'woman'},
+    {firstName: 'Berassou', lastName: 'KOFFI', id: 3, imgName: 'max'},
+    {firstName: 'DIAMANT', lastName: 'CHERIF', id: 4, imgName: 'aiony'},
+  ]
+
+  // When the user clicks "vote" for a candidate, the candidate info should be displayed
+  let [ selectedCandidate, setSelectedCandidate ] = useState()
+
   function validateVote () {
     console.log('Vote validaté !')
     setIsVoteBtnDisabled(true)
@@ -20,6 +30,11 @@ export default function Vote
       onClose()
     }, 1000);
   }
+
+  function chooseCandidate (candidate:any) {
+    setSelectedCandidate(candidate);
+    onOpen()
+;  } 
   
   
   return (
@@ -34,13 +49,13 @@ export default function Vote
         
         {/* CANDIDATE VOTE CARD */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14 gap-4 gap-y-8">
-          {['man', 'woman', 'max', 'aiony'].map((item, index) => (
+          {candidates.map((item, index) => (
             <div key={index}>
               <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden">
                 <div className="w-full flex justify-center bg-gray-200">
-                  <img src={`images/${item}.jpg`} alt="Candidat 1" className='h-60 bg-black'/>
+                  <img src={`images/${item.imgName}.jpg`} alt="Candidat 1" className='h-60 bg-black'/>
                 </div>
-                <Button className="btn btn-primary my-4" onPress={onOpen}> Voter M. Tant</Button>
+                <Button className="btn btn-primary my-4" onPress={() => chooseCandidate(item)}> Voter M. Tant</Button>
               </div>
             </div>
           ))}
@@ -81,6 +96,7 @@ export default function Vote
             <>
               <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
               <ModalBody>
+                <p className='font-bold'>Voter {selectedCandidate.lastName} ?</p>
                 <p> 
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Nullam pulvinar risus non risus hendrerit venenatis.
