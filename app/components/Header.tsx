@@ -53,8 +53,8 @@ export default function Header() {
                 </Link>
                 </NavbarItem>
                 <NavbarItem>
-                <Link color="foreground" href="#">
-                    Résultats
+                <Link color="foreground" href="/stats">
+                    Statistiques
                 </Link>
             </NavbarItem>
         </NavbarContent>
