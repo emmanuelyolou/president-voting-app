@@ -11,14 +11,14 @@ export default function Home() {
   return (
     <NextUIProvider className="flex items-center justify-center full-height">
       <main className="">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container mx-auto px-4 md:px-8 pt-4">
           <div className="grid md:grid-cols-12 gap-y-8">
             {/* -- MAIN HERO LEFT PART -- */}
             <div className="md:col-span-7">
               <div className="h-full flex flex-col justify-center gap-4">
                 {/* HERO TEXT CONTENT */}
                 <h1 className="">ELECTION PRESIDENT IDSI</h1>
-                <p className="text-slate-600 text-3xl font-medium mt-3">
+                <p className="text-slate-600 text-lg md:text-3xl font-medium mt-3">
                   La 7e promotion de l’IDSI lance le début des élections de son
                   nouveau président.
                 </p>
@@ -37,7 +37,7 @@ export default function Home() {
               </div>
             </div>
             {/* -- MAIN HERO RIGHT PART */}
-            <div className="md:col-span-4 md:col-start-9">
+            <div className="md:col-span-4 md:col-start-9 max-sm:w-48 mx-auto max-sm:row-start-1">
               <img
                 className="w-full max-w-xs md:max-w-md"
                 src="images/Sitting-hero.png"

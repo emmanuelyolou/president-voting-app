@@ -10,6 +10,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { FaCheck } from "react-icons/fa6";
+import { PiNoteBlank } from "react-icons/pi";
 
 export default function Vote() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -51,7 +52,7 @@ export default function Vote() {
   return (
     <main>
       {/* <VoteConfirmationModal isOpen={isOpen} name={12}/> */}
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto px-4 md:px-8">
         <h1 className="mt-14">Choisissez votre Président</h1>
         <p className="text-slate-600 text-xl mt-5">
           Lequel de ces candidats correspond le plus à ce que vous attendez du
@@ -79,6 +80,22 @@ export default function Vote() {
               </div>
             </div>
           ))}
+
+          <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden ">
+            <div className="w-full flex justify-center bg-gray-200 h-60 items-center bg-warning-50 text-warning-600">
+              <div className="w-20 h-20 flex flex-center justify-center items-center rounded-full bg-warning-300">
+                <span className=" text-6xl">
+                  <PiNoteBlank />
+                </span>
+              </div>
+            </div>
+            <Button
+              className="btn btn-primary my-4"
+              onPress={() => chooseCandidate(candidates[0])}
+            >
+              Voter
+            </Button>
+          </div>
         </div>
       </section>
 
