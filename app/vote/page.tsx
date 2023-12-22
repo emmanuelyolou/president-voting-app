@@ -71,8 +71,11 @@ export default function Vote() {
                     className="h-60 bg-black"
                   />
                 </div>
+                <p className="text-2xl font-bold py-2 border-b w-full text-center">
+                  {item.firstName}
+                </p>
                 <Button
-                  className="btn btn-primary my-4"
+                  className="btn btn-primary my-4 w-48"
                   onPress={() => chooseCandidate(item)}
                 >
                   Voter
