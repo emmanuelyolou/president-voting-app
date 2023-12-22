@@ -1,62 +1,35 @@
-"use client";
 import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
+const WinnerCarousel = ({ candidates, winnerIndex }) => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 250, // Ajustez cette valeur pour changer la vitesse des transitions (plus petite = plus rapide)
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0, // La vitesse à laquelle les slides changent en autoplay (0 désactive le défilement automatique)
+    cssEase: "linear", // Utilisez une transition linéaire pour créer un effet plus fluide
+    beforeChange: (current, next) => {
+      if (next === winnerIndex) {
+        // Arrêtez le défilement lorsque le vainqueur est atteint
+        settings.autoplay = false;
+      }
     },
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart",
-    },
-  },
-};
+  };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => 600),
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => 400),
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-export default function Results() {
   return (
-    <main>
-      <div className="container px-4 mx-auto">
-        <Bar options={options} data={data} />
-      </div>
-    </main>
+    <Slider {...settings}>
+      {candidates.map((candidate, index) => (
+        <div key={index}>
+          <img src={candidate.photo} alt={`Candidate ${index}`} />
+        </div>
+      ))}
+    </Slider>
   );
-}
+};
+
+export default WinnerCarousel;
