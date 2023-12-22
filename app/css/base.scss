@@ -29,17 +29,21 @@ h6 {
 }
 
 h1 {
-  @apply text-4xl;
+  @apply text-3xl;
 
   @include md {
+    @apply text-5xl;
+  }
+  @include lg {
     @apply text-6xl;
   }
-  // @include lg {
-  //     @apply text-6xl
-  // }
 }
 h2 {
-  @apply text-4xl;
+  @apply text-2xl;
+
+  @include md {
+    @apply text-4xl;
+  }
 }
 h3 {
   @apply text-2xl;
@@ -54,4 +58,14 @@ input {
 
 .full-height {
   min-height: calc(100% - 4.5rem);
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }

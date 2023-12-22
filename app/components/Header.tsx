@@ -70,19 +70,19 @@ export default function Header() {
 
         <NavbarContent className="max-sm:hidden">
           <NavbarItem isActive={pathname == "candidates"}>
-            <Link color="foreground" href="#">
+            <Link className="" color="foreground" href="#">
               Candidats
             </Link>
           </NavbarItem>
 
           <NavbarItem isActive={pathname == "organization"}>
-            <Link href="#" aria-current="page">
+            <Link className="" href="#" aria-current="page">
               Comité
             </Link>
           </NavbarItem>
 
           <NavbarItem isActive={pathname == "/stats"}>
-            <Link color="foreground" href="/stats">
+            <Link className="" color="foreground" href="/stats">
               Statistiques
             </Link>
           </NavbarItem>
@@ -108,7 +108,12 @@ export default function Header() {
         <NavbarMenu>
           {Object.entries(menuItems).map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href={item[1]} size="lg">
+              <Link
+                className="w-full"
+                href={item[1]}
+                size="lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {item[0]}
               </Link>
             </NavbarMenuItem>
