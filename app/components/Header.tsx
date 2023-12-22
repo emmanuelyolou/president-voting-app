@@ -29,7 +29,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const disconnect = (e) => {
-    socket.current.emit("clickDisconnect")
+    socket.current.emit("clickDisconnect",cookie.get("userId"))
     cookie.remove("userId");
     cookie.remove("token");
     router.push("login");

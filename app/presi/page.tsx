@@ -1,11 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import axios from "@/api/axios";
+import React, { useState,useEffect } from "react";
 import Slider from "react-slick";
 
 export default function Presi() {
   let [step, setStep] = useState(1);
+  const trouverPlusGrand = (liste)=> {
+    if (liste.length === 0) {
+      return null; // Retourne null si la liste est vide
+    }
+  
+    let plusGrand = liste[0]; // Initialise avec le premier élément
+  
+    for (let i = 1; i < liste.length; i++) {
+      if (liste[i].nb_voie > plusGrand.nb_voie ) {
+        plusGrand = liste[i];
+      }
+    }
+  
+    return plusGrand;
+  }
+  const [Candis,setCandis] =useState({})
   let i = 0;
+  
+  useEffect(()=>{
+    axios.get('/test/nb-votes').then(({data})=>{
+      console.log(trouverPlusGrand(data.candidats))
+      setCandis(trouverPlusGrand(data.candidates))
+    }).catch(err=>console.log(err)
+    )
+    },[])
 
   //   Carousel settings
   let [autoplay, setAutoPlay] = useState(true);
@@ -37,12 +62,12 @@ export default function Presi() {
       <Slider {...settings} className="">
         <div className="fdfd">
           <img
-            src="images/man.jpg"
+            src="images/N'GBESSO Tchimou Yannick Levi.jpg"
             alt=""
             className="result-image text-center object-contain block mx-auto"
           />
         </div>
-        <div className="">
+        {/* <div className="">
           <img
             src="images/woman.jpg"
             alt=""
@@ -62,7 +87,7 @@ export default function Presi() {
             alt=""
             className="result-image text-center object-contain block mx-auto"
           />
-        </div>
+        </div> */}
       </Slider>
     </div>
   );

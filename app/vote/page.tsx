@@ -15,20 +15,21 @@ export default function Vote
 
   let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false)
   const[candis,setCandis] = useState([])
-  const { user,socket,userVoted,setUserVoted } = useContext(CurrentUserContext);
+  const { user,socket,setUserVoted } = useContext(CurrentUserContext);
 
   // When the user clicks "vote" for a candidate, the candidate info should be displayed
   let [ selectedCandidate, setSelectedCandidate ] = useState({firstName: '', lastName: '', id: 0, imgName: ''})
 
   function validateVote () {
-    axios.get(`/test/associations/${user.id}/${selectedCandidate.id}`,{ headers: { Authorization: `Bearer ${cookie.get('token')}` } }).then(({data})=> {
-      console.log(data);
-      socket.current.emit("userVoted",cookie.get("userId"))
-      socket.current.on("userVoted",data=>{
-        console.log(data);
+    axios.get(`/test/associations/${user.id}/${selectedCandidate.id}`).then(({data})=> {
+      
+      socket.current.emit("Voted",cookie.get("userId"))
+      socket.current.on("useVoted",data=>{
+        console.log(data);  
         setUserVoted(data)
       })
-    }).catch(err=>console.log('Vote validaté ! Vous avez voté ')
+      alert("Vote confirmer");
+    }).catch(err=>alert('Vous avez déja votez')
     )
     setIsVoteBtnDisabled(true)
   

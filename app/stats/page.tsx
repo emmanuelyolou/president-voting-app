@@ -47,7 +47,7 @@ export default function Stats() {
         
             <div className="rounded-lg shadow-md py-16 flex flex-col items-center bg-gray-50 text-gray-600">
               <div className="flex items-center gap-x-4">
-                <span className="text-6xl">5</span>
+                <span className="text-6xl">{37 - userVoted.length}</span>
                 <div className="w-16 h-16 flex flex-center justify-center items-center rounded-full bg-gray-300">
                   <span className=' text-5xl'><MdOutlineAccessTime  /></span>
                 </div>
