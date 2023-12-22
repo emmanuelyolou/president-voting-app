@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './css/base.scss';
-@import './css/components/btns';
-@import './css/components/hero';
-@import "~slick-carousel/slick/slick.css"; 
+@import "./css/base.scss";
+@import "./css/components/btns";
+@import "./css/components/hero";
+@import "./css/components/images";
+@import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
 :root {
@@ -22,10 +23,9 @@
   }
 }
 
-
-
-
-li { list-style: none; }
+li {
+  list-style: none;
+}
 
 /* input {
   border-radius: .5rem;

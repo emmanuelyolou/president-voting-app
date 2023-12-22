@@ -1,50 +1,87 @@
-'use client'
-import React, { Component } from "react";
+"use client";
+import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
+import "../globals.scss"; // Assurez-vous d'importer ou de définir les styles CSS nécessaires
 
-export default class SimpleSlider extends Component {
-  render() {
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 50, // Ajustez cette valeur pour changer la vitesse des transitions (plus petite = plus rapide)
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 0, // La vitesse à laquelle les slides changent en autoplay (0 désactive le défilement automatique)
-        cssEase: 'linear', 
-        pauseOnHover: false
+export default function Results() {
+  let i = 0;
+  let [step, setStep] = useState(1);
 
-        // beforeChange: (current, next) => {
-        //     if (next === winnerIndex) {
-        //       // Arrêtez le défilement lorsque le vainqueur est atteint
-        //       settings.autoplay = false;
-        //     }
-        // }
-    };
-    return (
-      <main>
-          <div className="w-full max-w-3xl mx-auto px-4 md:px-8">
-            <h2 className="mb-8"> Le Président est</h2>
-            <Slider {...settings} className="">
-                <div className="bg-green-200 h-96">
-                    <div className="flex justify-center">1</div>
-                </div>
-                <div className="bg-blue-200 h-96">
-                    <div className="flex justify-center">2</div>
-                </div>
-                <div className="bg-red-200 h-96">
-                    <div className="flex justify-center">3</div>
-                </div>
-                <div className="bg-gray-200 h-96">
-                    <div className="flex justify-center">4</div>
-                </div>
-                <div className="bg-green-200 h-96">
-                    <div className="flex justify-center">5</div>
-                </div>
-            </Slider>
-          </div>
-      </main>
-    );
-  }
+  //   Carousel settings
+  let [autoplay, setAutoPlay] = useState(true);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 50,
+    slidesToShow: 1,
+    fade: true,
+    slidesToScroll: 1,
+    autoplay: autoplay,
+    autoplaySpeed: 5,
+    cssEase: "none",
+    pauseOnHover: false,
+
+    beforeChange: (current: any, next: any) => {
+      i++;
+      if (i >= 100 && next == 3) {
+        setAutoPlay(false);
+
+        console.log(next);
+        console.log(current);
+      }
+    },
+  };
+
+  // Hides the text and launches the Candidates carousel
+  useEffect(() => {
+    let timeoutId = setTimeout(() => {
+      setStep(2);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return (
+    <main className="h-full">
+      {step == 1 ? (
+        <div className="w-full max-w-3xl mx-auto px-4 md:px-8 flex items-center h-full fade-in">
+          <h2 className="mb-8 -translate-y-14 flex mx-auto text-center">
+            Le Président de la 7e Promotion de l'IDSI est
+          </h2>
+        </div>
+      ) : (
+        <div className="w-full max-w-3xl mx-auto px-4 md:px-8 h-full pt-4 md:pt-8">
+          <Slider {...settings} className="">
+            <div className="fdfd">
+              <img
+                src="images/man.jpg"
+                alt=""
+                className="result-image text-center object-contain block mx-auto"
+              />
+            </div>
+            <div className="">
+              <img
+                src="images/woman.jpg"
+                alt=""
+                className="result-image text-center object-contain block mx-auto"
+              />
+            </div>
+            <div className="">
+              <img
+                src="images/max.jpg"
+                alt=""
+                className="result-image text-center object-contain block mx-auto"
+              />
+            </div>
+            <div className="">
+              <img
+                src="images/aiony.jpg"
+                alt=""
+                className="result-image text-center object-contain block mx-auto"
+              />
+            </div>
+          </Slider>
+        </div>
+      )}
+    </main>
+  );
 }

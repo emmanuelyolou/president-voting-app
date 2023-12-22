@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import {NextUIProvider} from "@nextui-org/system";
+import { NextUIProvider } from "@nextui-org/system";
 
 import Link from "next/link";
 import * as React from "react";
@@ -12,7 +12,6 @@ export default function Home() {
     <NextUIProvider className="flex items-center justify-center full-height">
       <main className="">
         <div className="container mx-auto px-4 md:px-8">
-  
           <div className="grid md:grid-cols-12 gap-y-8">
             {/* -- MAIN HERO LEFT PART -- */}
             <div className="md:col-span-7">
@@ -28,7 +27,10 @@ export default function Home() {
                   <Link href="vote" className="btn btn-primary text-xl">
                     Voter
                   </Link>
-                  <Link href="/results" className="btn btn-primary--outlined text-xl">
+                  <Link
+                    href="/results"
+                    className="btn btn-primary--outlined text-xl"
+                  >
                     Résultats
                   </Link>
                 </div>
