@@ -31,9 +31,12 @@ h6 {
 h1 {
   @apply text-3xl;
 
-  // @include lg {
-  //     @apply text-6xl
-  // }
+  @include md {
+    @apply text-5xl;
+  }
+  @include lg {
+    @apply text-6xl;
+  }
 }
 h2 {
   @apply text-2xl;
