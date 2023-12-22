@@ -1,13 +1,16 @@
 .btn {
-    @apply rounded-2xl;
-    @apply px-6;
-    @apply py-2;
+  @apply rounded-2xl;
+  @apply px-6;
+  @apply py-2;
 
-    &.btn-primary {
-        @apply bg-blue-600;
-        color: white;
-    }
-    &.btn-primary--outlined {
-        @apply border border-blue-600 text-blue-600;
-    }
+  &.btn-primary {
+    @apply bg-blue-600;
+    color: white;
+  }
+  &.btn-primary--outlined {
+    @apply border border-blue-600 text-blue-600;
+  }
+  &--big {
+    @apply py-4;
+  }
 }

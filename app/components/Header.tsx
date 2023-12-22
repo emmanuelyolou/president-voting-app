@@ -97,7 +97,13 @@ export default function Header() {
                 Se deconnecter
               </Button>
             ) : (
-              <Button as={Link} color="primary" href="login" variant="flat">
+              <Button
+                as={Link}
+                className={pathname == "/login" ? "hidden" : ""}
+                color="primary"
+                href="login"
+                variant="flat"
+              >
                 Se connecter
               </Button>
             )}

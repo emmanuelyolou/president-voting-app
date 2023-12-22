@@ -59,7 +59,7 @@ export default function Login() {
   return (
     <div
       className="mt-10 w-full max-w-2xl mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-    border-slate-200 border py-16 rounded-xl"
+    border-slate-200 border py-16 rounded-xl container px-4 md:px-8 lg:px-16"
     >
       <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
         <h1>Connexion</h1>
@@ -74,6 +74,7 @@ export default function Login() {
           </label>
           <div className="mt-2">
             <input
+              required
               onChange={handleInput}
               type="email"
               name="email"
@@ -94,6 +95,7 @@ export default function Login() {
           </label>
           <div className="mt-2">
             <input
+              required
               onChange={handleInput}
               type="password"
               name="password"
@@ -103,7 +105,9 @@ export default function Login() {
             />
           </div>
         </div>
-        <button className="btn btn-primary mt-8">Connexion</button>
+        <button className="btn btn-primary btn--big mt-8 w-full text-xl py-48">
+          Connexion
+        </button>
       </form>
     </div>
   );
