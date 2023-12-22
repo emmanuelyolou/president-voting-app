@@ -6,12 +6,9 @@ import { FaCheck } from "react-icons/fa6";
 import axios from '@/api/axios';
 import CurrentUserContext from '../hooks/CurrentUser';
 import cookie from 'js-cookie';
+import { PiNoteBlank } from 'react-icons/pi';
 
 export default function Vote() {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
-  let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false);
-
   const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
 
   let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false)
@@ -174,4 +171,4 @@ axios.get('/test/nb-votes').then(({data})=>{
       </>
     </main>
   );
-}
+}}
