@@ -6,9 +6,11 @@ import { FaCheck } from "react-icons/fa6";
 import axios from '@/api/axios';
 import CurrentUserContext from '../hooks/CurrentUser';
 import cookie from 'js-cookie';
-import { PiNoteBlank } from 'react-icons/pi';
 
-export default function Vote() {
+
+export default function Vote
+() {
+
   const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
 
   let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false)
@@ -16,18 +18,7 @@ export default function Vote() {
   const { user,socket,userVoted,setUserVoted } = useContext(CurrentUserContext);
 
   // When the user clicks "vote" for a candidate, the candidate info should be displayed
-  let [selectedCandidate, setSelectedCandidate] = useState({
-    firstName: "",
-    lastName: "",
-    id: 0,
-    imgName: "",
-  });
-
-  function validateVote() {
-    console.log(
-      "Vote validaté ! Vous avez voté " + selectedCandidate.firstName
-    );
-    setIsVoteBtnDisabled(true);
+  let [ selectedCandidate, setSelectedCandidate ] = useState({firstName: '', lastName: '', id: 0, imgName: ''})
 
   function validateVote () {
     axios.get(`/test/associations/${user.id}/${selectedCandidate.id}`,{ headers: { Authorization: `Bearer ${cookie.get('token')}` } }).then(({data})=> {
@@ -42,8 +33,8 @@ export default function Vote() {
     setIsVoteBtnDisabled(true)
   
     setTimeout(() => {
-      setIsVoteBtnDisabled(false);
-      onClose();
+      setIsVoteBtnDisabled(false)
+      onClose()
     }, 1000);
   }
 
@@ -62,13 +53,13 @@ axios.get('/test/nb-votes').then(({data})=>{
   return (
     <main>
       {/* <VoteConfirmationModal isOpen={isOpen} name={12}/> */}
-      <section className="container mx-auto px-4 md:px-8">
+      <section className="container mx-auto px-4">
         <h1 className="mt-14">Choisissez votre Président</h1>
         <p className="text-slate-600 text-xl mt-5">
-          Lequel de ces candidats correspond le plus à ce que vous attendez du
-          Président de l’IDSI ?
+          Lequel de ces candidats correspond le plus à ce que vous attendez du Président de l’IDSI ?
         </p>
 
+        
         {/* CANDIDATE VOTE CARD */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14 gap-4 gap-y-8">
           {candis.map((item, index) => (
@@ -77,98 +68,66 @@ axios.get('/test/nb-votes').then(({data})=>{
                 <div className="w-full flex justify-center bg-gray-200">
                   <img src={`images/${item.nom}.jpg`} alt="Candidat 1" className='h-60 bg-black'/>
                 </div>
-                <p className="text-2xl font-bold py-2 border-b w-full text-center">
-                  {item.firstName}
-                </p>
-                <Button
-                  className="btn btn-primary my-4 w-48"
-                  onPress={() => chooseCandidate(item)}
-                >
-                  Voter
-                </Button>
+                <Button className="btn btn-primary my-4" onPress={() => chooseCandidate(item)}>Voter</Button>
               </div>
             </div>
           ))}
-
-          <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden ">
-            <div className="w-full flex justify-center bg-gray-200 h-60 items-center bg-warning-50 text-warning-600">
-              <div className="w-20 h-20 flex flex-center justify-center items-center rounded-full bg-warning-300">
-                <span className=" text-6xl">
-                  <PiNoteBlank />
-                </span>
-              </div>
-            </div>
-            <Button
-              className="btn btn-primary my-4"
-              onPress={() => chooseCandidate(candidates[0])}
-            >
-              Voter
-            </Button>
-          </div>
+          
         </div>
       </section>
 
-      <>
-        <Modal
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-          placement={"center"}
-          isDismissable={false}
-          motionProps={{
-            variants: {
-              enter: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.3,
-                  ease: "easeOut",
-                },
-              },
-              exit: {
-                y: -40,
-                opacity: 0,
-                transition: {
-                  duration: 0.2,
-                  ease: "easeIn",
-                },
+      
+    <>
+      <Modal 
+        isOpen={isOpen} 
+        onOpenChange={onOpenChange}
+        placement={"center"}
+        isDismissable={false}
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                ease: "easeOut",
               },
             },
-          }}
+            exit: {
+              y: -40,
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+                ease: "easeIn",
+              },
+            }
+          }
+        }}
         >
-          <ModalContent>
-            {(onClose: any) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1">
-                  Voter{" "}
-                  {selectedCandidate.lastName +
-                    " " +
-                    selectedCandidate.firstName}{" "}
-                  ?
-                </ModalHeader>
-                <ModalBody>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  </p>
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
-                    Annuler
-                  </Button>
-                  <Button
-                    color="primary"
-                    isDisabled={isVoteBtnDisabled}
-                    onPress={validateVote}
-                  >
-                    Confirmer
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
-      </>
+        <ModalContent>
+          {(onClose: any) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Voter {selectedCandidate.lastName + " " +  selectedCandidate.firstName} ?</ModalHeader>
+              <ModalBody>
+                <p> 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Annuler
+                </Button>
+                <Button color="primary" isDisabled={isVoteBtnDisabled} onPress={validateVote}>
+                  Confirmer
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
     </main>
-  );
-}}
+  )
+}
