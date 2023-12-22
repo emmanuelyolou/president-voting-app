@@ -69,19 +69,19 @@ export default function Header() {
 
         <NavbarContent className="max-sm:hidden">
           <NavbarItem isActive={pathname == "candidates"}>
-            <Link className="text-neutral-900" color="foreground" href="#">
+            <Link className="" color="foreground" href="#">
               Candidats
             </Link>
           </NavbarItem>
 
           <NavbarItem isActive={pathname == "organization"}>
-            <Link className="text-neutral-900" href="#" aria-current="page">
+            <Link className="" href="#" aria-current="page">
               Comité
             </Link>
           </NavbarItem>
 
           <NavbarItem isActive={pathname == "/stats"}>
-            <Link className="text-neutral-900" color="foreground" href="/stats">
+            <Link className="" color="foreground" href="/stats">
               Statistiques
             </Link>
           </NavbarItem>
