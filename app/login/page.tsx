@@ -49,7 +49,7 @@ export default function Login() {
         .then(({ data }) => {
           cookie.set("token", data.token);
           cookie.set("userId", data.userId);
-          setActualiser(actualiser);
+          setActualiser(!actualiser);
           router.push("/vote");
         })
         .catch((err) => console.log(err));

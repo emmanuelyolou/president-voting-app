@@ -1,8 +1,11 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import { Button } from '@nextui-org/button'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 import { FaCheck } from "react-icons/fa6";
+import axios from '@/api/axios';
+import CurrentUserContext from '../hooks/CurrentUser';
+import cookie from 'js-cookie';
 
 
 export default function Vote
@@ -11,19 +14,22 @@ export default function Vote
   const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
 
   let [isVoteBtnDisabled, setIsVoteBtnDisabled] = useState(false)
-
-  const candidates = [ 
-    {firstName: 'Levi', lastName: 'N\'GBESSO', id: 1, imgName: 'man'},
-    {firstName: 'Jean-Bosco', lastName: 'YAO', id: 2, imgName: 'woman'},
-    {firstName: 'Berassou', lastName: 'KOFFI', id: 3, imgName: 'max'},
-    {firstName: 'DIAMANT', lastName: 'CHERIF', id: 4, imgName: 'aiony'},
-  ]
+  const[candis,setCandis] = useState([])
+  const { user,socket,userVoted,setUserVoted } = useContext(CurrentUserContext);
 
   // When the user clicks "vote" for a candidate, the candidate info should be displayed
   let [ selectedCandidate, setSelectedCandidate ] = useState({firstName: '', lastName: '', id: 0, imgName: ''})
 
   function validateVote () {
-    console.log('Vote validaté ! Vous avez voté ' + selectedCandidate.firstName)
+    axios.get(`/test/associations/${user.id}/${selectedCandidate.id}`,{ headers: { Authorization: `Bearer ${cookie.get('token')}` } }).then(({data})=> {
+      console.log(data);
+      socket.current.emit("userVoted",cookie.get("userId"))
+      socket.current.on("userVoted",data=>{
+        console.log(data);
+        setUserVoted(data)
+      })
+    }).catch(err=>console.log('Vote validaté ! Vous avez voté ')
+    )
     setIsVoteBtnDisabled(true)
   
     setTimeout(() => {
@@ -33,10 +39,16 @@ export default function Vote
   }
 
   function chooseCandidate (candidate:any) {
+    console.log(candidate )
     setSelectedCandidate(candidate);
     onOpen()
 ;  } 
-  
+useEffect(()=>{
+axios.get('/test/nb-votes').then(({data})=>{
+  setCandis(data.candidats)
+}).catch(err=>console.log(err)
+)
+},[])
   
   return (
     <main>
@@ -50,11 +62,11 @@ export default function Vote
         
         {/* CANDIDATE VOTE CARD */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14 gap-4 gap-y-8">
-          {candidates.map((item, index) => (
+          {candis.map((item, index) => (
             <div key={index}>
               <div className="flex flex-col items-center rounded-3xl shadow-md overflow-hidden">
                 <div className="w-full flex justify-center bg-gray-200">
-                  <img src={`images/${item.imgName}.jpg`} alt="Candidat 1" className='h-60 bg-black'/>
+                  <img src={`images/${item.nom}.jpg`} alt="Candidat 1" className='h-60 bg-black'/>
                 </div>
                 <Button className="btn btn-primary my-4" onPress={() => chooseCandidate(item)}>Voter</Button>
               </div>

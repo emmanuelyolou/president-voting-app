@@ -17,7 +17,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, setUser, actualiser, setActualiser } =
+  const { user, setUser, actualiser, setActualiser,socket } =
     useContext(CurrentUserContext);
   const router = useRouter();
 
@@ -29,6 +29,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const disconnect = (e) => {
+    socket.current.emit("clickDisconnect")
     cookie.remove("userId");
     cookie.remove("token");
     router.push("login");
@@ -92,7 +93,7 @@ export default function Header() {
             <Link href="#">Login</Link>
             </NavbarItem> */}
           <NavbarItem>
-            {user.id ? (
+            {Object.keys(user).length != 0 ? (
               <Button color="warning" onClick={disconnect} variant="flat">
                 Se deconnecter
               </Button>
